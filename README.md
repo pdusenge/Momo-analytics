@@ -6,6 +6,7 @@ A comprehensive ETL (Extract, Transform, Load) pipeline and dashboard system for
 ## Team Members  (Team Name: EWD-group-3)
 - Peggy Dusenge
 - Esther Irakoze Digne
+- Kagaba Shingiro Etienne
 
 ## Architecture Diagram
 System Architecture: https://miro.com/app/board/uXjVJKkj0Zg=/?share_link_id=844505314297
