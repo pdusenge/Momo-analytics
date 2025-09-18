@@ -3,6 +3,17 @@ Mobile Money Transaction Processing System
 
 ## Project Description
 A comprehensive ETL (Extract, Transform, Load) pipeline and dashboard system for processing mobile money (MoMo) transaction data from XML files. The system cleanses and normalizes transaction data, stores it in a SQLite database, and provides an interactive web-based analytics dashboard for transaction insights and reporting.
+
+## Main Task Completed
+1. Entity Relationship Diagram (ERD) Design
+As part of the core system design, our team analyzed the MoMo XML data structure to identify key entities, their attributes, and the relationships between them.
+We created a comprehensive ERD that includes these core entities:
+Transactions — main transaction records
+Users/Customers — sender/receiver information
+Transaction_Categories — payment types, transfer types, etc.
+System_Logs — for tracking data processing and pipeline activity
+This ERD serves as the foundation for the database schema and ensures data integrity across the system.
+
 ## Team Members  (Team Name: EWD-group-3)
 - Peggy Dusenge
 - Esther Digne Irakoze
