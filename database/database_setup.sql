@@ -1,3 +1,14 @@
+CREATE TYPE status_enum AS ENUM ('success', 'fail');
+
+CREATE TYPE transaction_status_enum AS ENUM ('failed', 'success');
+
+CREATE TYPE direction_enum AS ENUM ('outgoing', 'incoming');
+
+CREATE TYPE transaction_category_enum AS ENUM (
+  'payment', 'transfer', 'bank_deposit', 'bank_withdrawal', 
+  'momo_deposit', 'momo_withdrawal', 'Airtime', 'electricity'
+);
+
 CREATE TABLE "sms" (
   "id" uuid PRIMARY KEY,
   "protocol" varchar,
@@ -21,7 +32,7 @@ CREATE TABLE "sms" (
 CREATE TABLE "system_logs" (
   "id" uuid PRIMARY KEY,
   "created_at" timestamp,
-  "status" enum(success,fail),
+  "status" status_enum,
   "message" text
 );
 
@@ -29,25 +40,26 @@ CREATE TABLE "users" (
   "id" uuid PRIMARY KEY,
   "full_name" varchar,
   "number" varchar(13) UNIQUE,
-  "ends_in" varchar[3],
+  "ends_in" varchar(3),
   "payment_code" varchar,
   "inferred_at" timestamp
 );
 
 CREATE TABLE "transactions" (
-  "id" uuid,
+  "id" uuid PRIMARY KEY,
   "tx_id" varchar,
   "recpt" uuid,
   "sender" uuid,
   "date" timestamp,
   "amount" decimal,
-  "status" enum(failed,sucessful),
+  "status" transaction_status_enum,
   "fee" decimal,
-  "direction" enum(outgoing,incoming),
+  "direction" direction_enum,
   "new_balance" decimal,
-  "transaction_category" "enum(payment,transfer,bank_deposit,bank_withdrawal,momo_deposit,momo_withdrawal,Airtime,electricity)",
+  "transaction_category" transaction_category_enum,
   "sms_id" uuid UNIQUE NOT NULL
 );
+
 
 ALTER TABLE "transactions" ADD FOREIGN KEY ("sms_id") REFERENCES "sms" ("id");
 
