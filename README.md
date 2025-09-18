@@ -8,6 +8,7 @@ A comprehensive ETL (Extract, Transform, Load) pipeline and dashboard system for
 - Esther Digne Irakoze
 - Kagaba Shingiro Etienne
 - Frank Nkurunziza
+- Umwari Grace
 
 ## Architecture Diagram
 System Architecture: https://miro.com/app/board/uXjVJKkj0Zg=/?share_link_id=844505314297
