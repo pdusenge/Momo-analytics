@@ -1,0 +1,59 @@
+{
+    "users": [
+        {
+            "id": "uuid",
+            "full_name": "string",
+            "number": "string (+250...)",
+            "ends_in": [
+                "string"
+            ],
+            "payment_code": "string",
+            "inferred_at": "timestamp"
+        }
+    ],
+    "sms": [
+        {
+            "id": "uuid",
+            "protocol": "string",
+            "address": "string",
+            "date": "timestamp",
+            "type": "string",
+            "subject": "string",
+            "body": "string",
+            "toa": "string",
+            "sc_toa": "string",
+            "service_center": "string",
+            "read": "string",
+            "status": "string",
+            "locked": "string",
+            "date_sent": "timestamp",
+            "sub_id": "string",
+            "readable_date": "string",
+            "contact_name": "string"
+        }
+    ],
+    "transactions": [
+        {
+            "id": "uuid",
+            "tx_id": "string",
+            "recpt": "uuid (FK to users.id)",
+            "sender": "uuid (FK to users.id)",
+            "date": "timestamp",
+            "amount": "decimal",
+            "status": "enum(failed,successful)",
+            "fee": "decimal",
+            "direction": "enum(outgoing,incoming)",
+            "new_balance": "decimal",
+            "transaction_category": "enum(payment,transfer,bank_deposit,bank_withdrawal,momo_deposit,momo_withdrawal,Airtime,electricity)",
+            "sms_id": "uuid (FK to sms.id)"
+        }
+    ],
+    "system_logs": [
+        {
+            "id": "uuid",
+            "created_at": "timestamp",
+            "status": "enum(success,fail)",
+            "message": "string"
+        }
+    ]
+}
