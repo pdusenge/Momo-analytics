@@ -16,7 +16,7 @@ This ERD serves as the foundation for the database schema and ensures data integ
 
 ## Team Members  (Team Name: EWD-group-3)
 - Peggy Dusenge
-- Esther Digne Irakoze
+- Esther Digne IRakoze
 - Kagaba Shingiro Etienne
 - Frank Nkurunziza
 - Umwari Grace
