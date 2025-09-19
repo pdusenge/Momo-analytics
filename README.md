@@ -1,170 +1,151 @@
-# Momo-analytics
+# Momo-analytics  
 Mobile Money Transaction Processing System
 
-## Project Description
-A comprehensive ETL (Extract, Transform, Load) pipeline and dashboard system for processing mobile money (MoMo) transaction data from XML files. The system cleanses and normalizes transaction data, stores it in a SQLite database, and provides an interactive web-based analytics dashboard for transaction insights and reporting.
+## 📌 Project Description
+A complete ETL and analytics system to process :contentReference[oaicite:0]{index=0} SMS-based mobile money transactions.  
+It ingests raw XML SMS data, cleans and normalizes it, stores it in a relational database, and serves analytics via a dashboard and optional API.
 
-## Main Task Completed
-1. Entity Relationship Diagram (ERD) Design
-As part of the core system design, our team analyzed the MoMo XML data structure to identify key entities, their attributes, and the relationships between them.
-We created a comprehensive ERD that includes these core entities:
-Transactions — main transaction records
-Users/Customers — sender/receiver information
-Transaction_Categories — payment types, transfer types, etc.
-System_Logs — for tracking data processing and pipeline activity
-This ERD serves as the foundation for the database schema and ensures data integrity across the system.
+---
 
-## Team Members  (Team Name: EWD-group-3)
-- Peggy Dusenge
-- Esther Digne Irakoze
-- Kagaba Shingiro Etienne
-- Frank Nkurunziza
-- Umwari Grace
+## 👥 Team Members  
+*Team Name: EWD-group-3*
 
-## Architecture Diagram
-System Architecture: https://miro.com/app/board/uXjVJKkj0Zg=/?share_link_id=844505314297
-## Scrum Board
-Project Management: https://trello.com/invite/b/68bf6d4ff57bdd9777616bf6/ATTI7367a1d02e2da2d9696262bdb1d51b1546D3C578/momo-trananalytics-scrum-board
+- Peggy Dusenge  
+- Esther Digne Irakoze  
+- Kagaba Shingiro Etienne  
+- Frank Nkurunziza  
+- Umwari Grace  
 
-## Project Structure
-```
+*Scrum Board:* [Trello Board](https://trello.com/invite/b/68bf6d4ff57bdd9777616bf6/ATTI7367a1d02e2da2d9696262bdb1d51b1546D3C578/momo-trananalytics-scrum-board)  
+*Architecture Diagram:* [Miro Board](https://miro.com/app/board/uXjVJKkj0Zg=/?share_link_id=844505314297)
+
+---
+
+## 📁 Week 2 Deliverables
+
+### 1. Entity Relationship Diagram (ERD)
+- *File:* docs/erd_diagram.png
+- Shows all entities, attributes, PKs/FKs, and relationships
+- Includes:
+  - users — customer details  
+  - transactions — core financial records  
+  - sms — raw SMS source data  
+  - system_logs — ETL pipeline activity
+
+### 2. SQL Database Implementation
+- *File:* database/database_setup.sql
+- Contains:
+  - All table DDL with constraints
+  - ENUM types for transaction fields
+  - Foreign keys with cascading rules
+  - Indexes for optimized queries
+  - Sample insert data
+- Tested with :contentReference[oaicite:1]{index=1}
+
+### 3. JSON Data Models
+- *File:* examples/json_schemas.json
+- Includes:
+  - One JSON object per entity (user, sms, transaction)
+  - One complex JSON object representing a complete transaction with nested user + sms info
+- Used to demonstrate how data is serialized in API responses
+
+### 4. Database Design Document
+- *File:* docs/database_design.pdf
+- Includes:
+  - ERD diagram
+  - Data dictionary (tables, columns, types, descriptions)
+  - Design rationale (200–300 words)
+  - Screenshots of sample CRUD queries
+  - Security rules and constraints used
+
+---
+
+## 📂 Project Structure
 .
-├── README.md                         # Setup, run, overview
-├── .env.example                      # DATABASE_URL or path to SQLite
-├── requirements.txt                  # lxml/ElementTree, dateutil, (FastAPI optional)
-├── dashboard.html                    # Main dashboard entry point
-├── frontend/                         # Web interface (renamed from web/)
-│   ├── styles/
-│   │   ├── main.css                  # Dashboard styling
-│   │   └── components.css            # Component-specific styles
-│   ├── scripts/
-│   │   ├── analytics.js              # Data visualization and charts
-│   │   └── api_handler.js            # API communication
-│   └── assets/                       # Images, icons, fonts
-├── storage/                          # Data management (renamed from data/)
-│   ├── input/                        # Raw XML files (was raw/)
-│   │   └── momo_transactions.xml
-│   ├── output/                       # Processed data (was processed/)
-│   │   └── analytics_data.json       # Dashboard data feed
-│   ├── momo_database.sqlite3         # Main transaction database
-│   └── monitoring/                   # System logs (was logs/)
-│       ├── pipeline.log              # ETL process logs
-│       └── errors/                   # Failed processing records
-├── pipeline/                         # ETL operations (renamed from etl/)
-│   ├── __init__.py
-│   ├── settings.py                   # Configuration and constants
-│   ├── xml_processor.py              # XML parsing and extraction
-│   ├── data_cleaner.py               # Data normalization and validation
-│   ├── transaction_classifier.py     # Transaction categorization
-│   ├── database_manager.py           # SQLite operations and queries
-│   └── main_runner.py                # Main ETL orchestration
-├── services/                         # API layer (renamed from api/)
-│   ├── __init__.py
-│   ├── web_api.py                    # FastAPI application
-│   ├── database_service.py           # Database connection utilities
-│   └── response_models.py            # API response schemas
-├── automation/                       # Deployment scripts (renamed from scripts/)
-│   ├── run_pipeline.sh               # Execute full ETL process
-│   ├── generate_dashboard_data.sh    # Export analytics data
-│   └── start_server.sh               # Launch web server
-└── quality_assurance/                # Testing suite (renamed from tests/)
-    ├── test_xml_processing.py        # XML parsing tests
-    ├── test_data_cleaning.py         # Data validation tests
-    └── test_classification.py        # Categorization logic tests
-```
+├── docs/
+│ ├── erd_diagram.png
+│ └── database_design.pdf
+├── database/
+│ └── database_setup.sql
+├── examples/
+│ └── json_schemas.json
+├── pipeline/
+├── services/
+├── storage/
+└── ...
 
-## Setup Instructions
+yaml
+
+
+---
+
+## ⚙ Setup Instructions
 
 ### Prerequisites
-- Python
-- Git
+- :contentReference[oaicite:2]{index=2} 3.8+
+- :contentReference[oaicite:3]{index=3}
+- :contentReference[oaicite:4]{index=4} or :contentReference[oaicite:5]{index=5}
 
 ### Installation
-1. Clone the repository
-   ```bash
-   git clone https://github.com/pdusenge/Momo-analytics.git
-   cd momo-trananalytics
-   ```
+```bash
+git clone https://github.com/pdusenge/Momo-analytics.git
+cd Momo-analytics
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+▶ Running the System
+bash
+Copy code
+# Run ETL pipeline
+./automation/run_pipeline.sh
 
-2. Create virtual environment
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+# Generate dashboard data
+./automation/generate_dashboard_data.sh
 
-3. Install dependencies
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Start web dashboard
+./automation/start_server.sh
+✨ Features
+Core
 
-4. Set up environment variables
-   ```bash
-   cp .env.example .env
-   # Edit .env file with your configuration
-   ```
+XML data ingestion
 
-### Running the System
+Data cleaning and normalization
 
-1. Run ETL Pipeline
-   ```bash
-   ./automation/run_pipeline.sh
-   # Or manually: python pipeline/main_runner.py --xml storage/input/momo_transactions.xml
-   ```
+Transaction categorization
 
-2. Export Dashboard Data
-   ```bash
-   ./automation/generate_dashboard_data.sh
-   ```
+Database storage
 
-3. Start Dashboard
-   ```bash
-   ./automation/start_server.sh
-   # Navigate to http://localhost:8000
-   ```
+Interactive analytics dashboard
 
-4. Optional: Start API Server
-   ```bash
-   cd services
-   uvicorn web_api:app --reload
-   # API available at http://localhost:8000
-   ```
+ETL process logging
 
-## Features
+Optional
 
-### Core Features
-- XML Data Processing: Parse and extract transaction data from XML files
-- Data Cleaning: Normalize amounts, dates, and phone numbers
-- Transaction Categorization: Automatic categorization of transaction types
-- SQLite Storage: Efficient local database storage
-- Web Dashboard: Interactive analytics and reporting interface
-- Logging: Comprehensive ETL process logging and error handling
+REST API using FastAPI
 
-### Optional Features (Bonus)
-- REST API: FastAPI endpoints for programmatic data access
-- Real-time Updates: Live dashboard data refresh
-- Advanced Analytics: Statistical analysis and trends
+Real-time dashboard updates
 
-## Development Workflow
+Advanced analytics (stats and trends)
 
-1. Task Management: Track progress using Trello board
-2. Version Control: Use feature branches and pull requests
-3. Code Review: All changes reviewed before merging to main
-4. Testing: Run unit tests before committing changes
-5. Documentation: Update README and code comments
+💻 Technology Stack
+Backend: Python
 
-## Technology Stack
+Database: SQLite (local) / MySQL (scalable)
 
-- Backend: Python 3.8+
-- Database: SQLite3
-- Frontend: HTML5, CSS3, JavaScript (ES6+)
-- XML Processing: lxml/ElementTree
-- Project Management: Trello
-- Architecture Design: Miro
-- Version Control: Git/GitHub
+Frontend: HTML5, CSS3, JavaScript
 
+XML Processing: lxml / ElementTree
 
+Project Management: Trello
 
+Design: Miro, Draw.io
 
+Version Control: GitHub
 
+🤖 AI Usage Policy
+Allowed: grammar/syntax checks, researching SQL best practices
 
+Not allowed: generating ERDs, SQL schema logic, or explanations
 
+AI-assisted content is marked in commits and logged
