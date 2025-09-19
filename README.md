@@ -86,64 +86,70 @@ yaml
 - :contentReference[oaicite:3]{index=3}
 - :contentReference[oaicite:4]{index=4} or :contentReference[oaicite:5]{index=5}
 
-### Installation
-```bash
-git clone https://github.com/pdusenge/Momo-analytics.git
-cd Momo-analytics
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-▶ Running the System
-bash
-Copy code
-# Run ETL pipeline
-./automation/run_pipeline.sh
+📦 Installation
+Prerequisites
 
-# Generate dashboard data
+Python 3.8+
+
+Git
+
+1. Clone the Repository
+git clone https://github.com/pdusenge/Momo-analytics.git
+cd momo-analytics
+
+2. Create Virtual Environment
+python -m venv venv
+# On Linux/Mac
+source venv/bin/activate
+# On Windows
+venv\Scripts\activate
+3. Install Dependencies
+pip install -r requirements.txt
+
+4. Configure Environment Variables
+cp .env.example .env
+# Then open .env and set DATABASE_URL or SQLite path
+
+⚡ Running the System
+Run ETL Pipeline
+./automation/run_pipeline.sh
+# Or:
+python pipeline/main_runner.py --xml storage/input/momo_transactions.xml
+
+Export Dashboard Data
 ./automation/generate_dashboard_data.sh
 
-# Start web dashboard
+Start Dashboard
 ./automation/start_server.sh
+# Visit: http://localhost:8000
 
+Optional: Start API Server
+cd services
+uvicorn web_api:app --reload
+# API available at http://localhost:8000
 
-### ✨ Features
-Core
+✨ Features
+Core Features
 
-XML data ingestion
+XML Data Processing: Parse and extract transaction data from XML files
 
-Data cleaning and normalization
+Data Cleaning: Normalize amounts, dates, and phone numbers
 
-Transaction categorization
+Transaction Categorization: Automatic categorization of transaction types
 
-Database storage
+SQLite Storage: Efficient local database storage
 
-Interactive analytics dashboard
+Web Dashboard: Interactive analytics and reporting interface
 
-ETL process logging
+Logging: Comprehensive ETL process logging and error handling
 
-Optional
+Optional (Bonus) Features
 
-REST API using FastAPI
+REST API: FastAPI endpoints for programmatic data access
 
-Real-time dashboard updates
+Real-time Updates: Live dashboard data refresh
 
-Advanced analytics (stats and trends)
-
-💻 Technology Stack
-Backend: Python
-
-Database: SQLite (local) / MySQL (scalable)
-
-Frontend: HTML5, CSS3, JavaScript
-
-XML Processing: lxml / ElementTree
-
-Project Management: Trello
-
-Design: Miro, Draw.io
-
-Version Control: GitHub
+Advanced Analytics: Statistical analysis and trends
 
 🤖 AI Usage Policy
 Allowed: grammar/syntax checks, researching SQL best practices
