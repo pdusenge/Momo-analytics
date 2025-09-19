@@ -50,7 +50,7 @@ It ingests raw XML SMS data, cleans and normalizes it, stores it in a relational
 - Used to demonstrate how data is serialized in API responses
 
 ### 4. Database Design Document
-- *File:* docs/database_design.pdf
+- *File:[* docs/database_design.pdf](https://docs.google.com/document/d/1cqCeBFdkxUXEDf90Kc4gXdeRdCvI6SGQu8DsI1x7lFQ/edit?tab=t.0#heading=h.bslennmrfyrj)
 - Includes:
   - ERD diagram
   - Data dictionary (tables, columns, types, descriptions)
