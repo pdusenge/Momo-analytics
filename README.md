@@ -107,7 +107,7 @@ Copy code
 ./automation/start_server.sh
 
 
-✨ Features
+### ✨ Features
 Core
 
 XML data ingestion
