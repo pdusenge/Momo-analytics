@@ -96,6 +96,104 @@ curl -u admin:secret "http://localhost:8000/transactions/1692"
 - **500 Internal Server Error:** Server error occurred
 
 ---
+## 3. POST /transactions - Create New Transaction
+
+### Endpoint & Method
+- **Method:** `POST`
+- **URL:** `/transactions`
+- **Authentication:** Required (Basic Auth)
+- **Content-Type:** `application/json`
+
+### Description
+Creates a new transaction record in the system.
+
+### Request Body Schema
+```json
+{
+  "transaction_id": "string (required)",
+  "type": "string (required)",
+  "amount": "string/number (required)",
+  "sender": "string (optional)",
+  "receiver": "string (optional)",
+  "timestamp": "string (optional)",
+  "balance": "string/number (optional)",
+  "fee": "number (optional)",
+  "raw_body": "string (optional)"
+}
+```
+
+### Request Example
+```http
+POST http://localhost:8000/transactions
+Authorization: Basic YWRtaW46c2VjcmV0
+Content-Type: application/json
+
+{
+  "transaction_id": "10264064542",
+  "type": "receive",
+  "amount": "50000",
+  "sender": "Jane Smith",
+  "receiver": "Peggy",
+  "timestamp": "2024-10-23 09:59:01",
+  "balance": "81022",
+  "fee": 0,
+  "raw_body": "You have received 50000 RWF from Jane Smith (25079596306) on your mobile money account at 2024-10-23 09:59:01. Message from sender: . Your new balance:81022 RWF. Financial Transaction Id: 80264064542."
+}
+```
+
+**cURL Command:**
+```bash
+curl -u admin:secret -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transaction_id": "10264064542",
+    "type": "receive",
+    "amount": "50000",
+    "sender": "Jane Smith",
+    "receiver": "Peggy",
+    "timestamp": "2024-10-23 09:59:01",
+    "balance": "81022",
+    "fee": 0
+  }' \
+  "http://localhost:8000/transactions"
+```
+
+### Response Example (201 Created)
+```json
+{
+  "id": 1692,
+  "transaction_id": "10264064542",
+  "type": "receive",
+  "amount": "50000",
+  "sender": "Jane Smith",
+  "receiver": "Peggy",
+  "timestamp": "2024-10-23 09:59:01",
+  "balance": "81022",
+  "fee": 0,
+  "raw_body": "You have received 50000 RWF from Jane Smith (25079596306) on your mobile money account at 2024-10-23 09:59:01. Message from sender: . Your new balance:81022 RWF. Financial Transaction Id: 80264064542."
+}
+```
+
+### Error Codes
+- **201 Created:** Transaction successfully created
+- **400 Bad Request:** Invalid JSON format or missing required fields
+- **401 Unauthorized:** Invalid or missing authentication credentials
+- **500 Internal Server Error:** Server error occurred
+
+---
+
+## 4. PUT /transactions/{id} - Update Existing Transaction
+
+### Endpoint & Method
+- **Method:** `PUT`
+- **URL:** `/transactions/{id}`
+- **Authentication:** Required (Basic Auth)
+- **Content-Type:** `application/json`
+- **Parameters:** 
+  - `id` (path parameter): Transaction ID to update
+
+### Description
+Updates an existing transaction record with new data.
 
 
 ---
