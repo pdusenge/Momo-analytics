@@ -195,6 +195,67 @@ curl -u admin:secret -X POST \
 ### Description
 Updates an existing transaction record with new data.
 
+### Request Body Schema
+All fields are optional for updates:
+```json
+{
+  "transaction_id": "string",
+  "type": "string",
+  "amount": "string/number",
+  "sender": "string",
+  "receiver": "string",
+  "timestamp": "string",
+  "balance": "string/number",
+  "fee": "number",
+  "raw_body": "string"
+}
+```
 
+### Request Example
+```http
+PUT http://localhost:8000/transactions/1692
+Authorization: Basic YWRtaW46c2VjcmV0
+Content-Type: application/json
+
+{
+  "transaction_id": "10264064542",
+  "type": "receive",
+  "amount": "50000",
+  "sender": "Vivine",
+  "receiver": "Peggy",
+  "timestamp": "2024-10-23 09:59:01",
+  "balance": "81022",
+  "fee": 0,
+  "raw_body": "You have received 50000 RWF from Jane Smith (25079596306) on your mobile money account at 2024-10-23 09:59:01. Message from sender: . Your new balance:81022 RWF. Financial Transaction Id: 80264064542."
+}
+```
+
+**cURL Command:**
+```bash
+curl -u admin:secret -X PUT \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sender": "Vivine",
+    "amount": "55000",
+    "balance": "86022"
+  }' \
+  "http://localhost:8000/transactions/1692"
+```
+
+### Response Example (200 OK)
+```json
+{
+  "id": 1692,
+  "transaction_id": "10264064542",
+  "type": "receive",
+  "amount": "50000",
+  "sender": "Vivine",
+  "receiver": "Peggy",
+  "timestamp": "2024-10-23 09:59:01",
+  "balance": "81022",
+  "fee": 0,
+  "raw_body": "You have received 50000 RWF from Jane Smith (25079596306) on your mobile money account at 2024-10-23 09:59:01. Message from sender: . Your new balance:81022 RWF. Financial Transaction Id: 80264064542."
+}
+```
 ---
 
