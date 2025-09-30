@@ -1,6 +1,6 @@
 # Momo-analytics  
 Mobile Money Transaction Processing System
-
+For more detailed documentation visit: https://deepwiki.com/pdusenge/Momo-analytics 
 ## 📌 Project Description
 A complete ETL and analytics system to process :contentReference[oaicite:0]{index=0} SMS-based mobile money transactions.  
 It ingests raw XML SMS data, cleans and normalizes it, stores it in a relational database, and serves analytics via a dashboard and optional API.
